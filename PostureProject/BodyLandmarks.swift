@@ -9,11 +9,11 @@ import AVFoundation
 import Foundation
 import Vision
 import SwiftUI
-import TabularData
 
 class BodyLandmarks: ObservableObject {
     @Published var landmarks: [CGPoint]? = nil
     private let bodyPoseRequest = VNDetectHumanBodyPoseRequest()
+    var postureEval: Double?
     
     //create a dictionary to grab convert joint locations to compatible CGPoint format
     //to calc necessary values for posture data
@@ -104,9 +104,9 @@ class BodyLandmarks: ObservableObject {
             //input posture calculations to the model
             let output = try? postureModel?.prediction(Head_Tilt: headTilt, Head_Lean: headLean, Head_Rotation: headRotation)
             
-            let posture = output?.Posture
+            postureEval = output?.Posture
             
-            if (posture == 1.0) {
+            if (postureEval == 1.0) {
                 print("Good")
             }
             else {

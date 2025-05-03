@@ -14,6 +14,8 @@ struct FrameView: View {
     var body: some View {
         if let image = image {
             Image(image, scale: 1.0, orientation: .upMirrored, label: label)
+                .resizable()
+                .scaledToFit()
         } else {
             Color.black
         }

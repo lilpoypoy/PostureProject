@@ -26,7 +26,9 @@ struct PostureProjectApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .aspectRatio(16/9, contentMode: .fit)
         }
         .modelContainer(sharedModelContainer)
+        .windowResizability(.contentSize)
     }
 }
